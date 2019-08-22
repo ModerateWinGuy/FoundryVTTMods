@@ -1,0 +1,14 @@
+{
+	"name": "healthmarker",
+	"title": "healthmarker",
+	"description": "marks NPCs in the combat tracker as bloodied and deafeated as their health decreases",
+	"version": "1.0",
+	"author": "ModerateWinGuy",
+	"scripts": ["./marker.js"],
+	"styles": [],
+	"packs": [],
+	"socket": true,
+	"manifest": "",
+	"download": "",
+	"url": ""
+}
