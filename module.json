@@ -2,7 +2,7 @@
 	"name": "healthmarker",
 	"title": "healthmarker",
 	"description": "marks NPCs in the combat tracker as bloodied and deafeated as their health decreases",
-	"version": "1.0",
+	"version": "1.1",
 	"author": "ModerateWinGuy",
 	"scripts": ["./marker.js"],
 	"styles": [],
@@ -10,5 +10,5 @@
 	"socket": true,
 	"manifest": "",
 	"download": "",
-	"url": ""
+	"url": "https://github.com/ModerateWinGuy/fvtt-module-bloodiedmarker"
 }

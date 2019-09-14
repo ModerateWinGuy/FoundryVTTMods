@@ -1,24 +1,32 @@
 var bloodIcon = "icons/svg/blood.svg";
-function updateToken(args, parentId){
+function updateToken(args, changedData) {
+    try{
+        let a = changedData.actorData.data.attributes.hp.value;
+    }
+    catch(e){
+        return;
+    }
     let tMaxHealth = args.actor.data.data.attributes.hp.max;
     let tCurrentHealth = args.actor.data.data.attributes.hp.value;
 
-    toggleBloodiedMarker((tCurrentHealth < (tMaxHealth/2) && tCurrentHealth > 0 ), args, parentId);
+    toggleBloodiedMarker((tCurrentHealth < (tMaxHealth / 2) && tCurrentHealth > 0), args);
 
-    if(tCurrentHealth <= 0){
-        setTokenDead(args);
-    }    
+    setTokenDead(args, tCurrentHealth > 0);
 }
 
-function toggleBloodiedMarker(state, token, parentId){
+function toggleBloodiedMarker(state, token) {
     let effs = token.data.effects;
-    if((state && !effs.includes(bloodIcon)) || (!state && effs.includes(bloodIcon))){
-       token.toggleEffect(bloodIcon);
+    if ((state && !effs.includes(bloodIcon)) || (!state && effs.includes(bloodIcon))) {
+        token.toggleEffect(bloodIcon);
     }
 }
 
-function setTokenDead(token){
-    token.data.overlayEffect = "icons/svg/skull.svg"
+function setTokenDead(token, alive) {
+    if(!token.data.overlayEffect && alive == false){
+        token.toggleOverlay(CONFIG.controlIcons.defeated);
+    } else if (token.data.overlayEffect && alive == true){
+        token.toggleOverlay(null);
+    }
 }
 
-Hooks.on('updateToken',(arg, parentId)=> updateToken(arg, parentId));
+Hooks.on('updateToken', (arg, parentId, changedData) => updateToken(arg, changedData));
